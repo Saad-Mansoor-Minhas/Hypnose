@@ -43,29 +43,24 @@
 
 
         <div class="form-group mt-2">
-            <label for="allergy-question">Any operations done in the past ?</label>
-            <div class="form-check">
-                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes" @onchange="@(()=>getValue())">
-                <label class="form-check-label" for="allergy-yes">
-                    Yes
-                </label>
-            </div>
-            <div class="form-check mt-2">
-                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
-                <label class="form-check-label" for="allergy-no">
-                    No
-                </label>
-            </div>
+            <label for="allergy-question">Any surgery done in the past ?</label>
+            <select class="form-control mt-2" id="condition" name="condition">
+                <option value="">-- Select --</option>
+                <option value="diabetes">yes</option>
+                <option value="diabetes">No</option>
+
+            </select>
+
         </div>
 
 
         <div id="Past_Surgical_History" class="tabcontent mt-2">
-            @if (isChecked)
-            {
+         @*    @if (isChecked)
+            { *@
                 @* <h1>Medical Operations</h1>*@
-                <p>Please Enter the details of Operation here </p>
+                <p>please list any surgeries that you had in the past </p>
                 <textarea class="form-control mt-2" id="allergy-details" rows="3"></textarea>
-            }
+         @*    } *@
         </div>
 
         <div id="Social_History" class="tabcontent mt-2">
@@ -74,18 +69,12 @@
 
             <div class="form-group mt-2">
                 <label for="allergy-question">Do you Smoke ?</label>
-                <div class="form-check">
-                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes">
-                    <label class="form-check-label" for="allergy-yes">
-                        Yes
-                    </label>
-                </div>
-                <div class="form-check mt-2">
-                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
-                    <label class="form-check-label" for="allergy-no">
-                        No
-                    </label>
-                </div>
+                <select class="form-control mt-2" id="condition" name="condition">
+                    <option value="">-- Select --</option>
+                    <option value="diabetes">yes</option>
+                    <option value="diabetes">No</option>
+
+                </select>
             </div>
 
 
@@ -114,23 +103,28 @@
 
 
 
+            <div id="Past_Surgical_History" class="tabcontent mt-2">
+                @*    @if (isChecked)
+                { *@
+                @* <h1>Medical Operations</h1>*@
+                <p>please list any recreational drugs that you currently use </p>
+                <textarea class="form-control mt-2" id="allergy-details" rows="3"></textarea>
+                @*    } *@
+            </div>
+
+
+
         </div>
 
 
         <div class="form-group mt-2">
             <label for="allergy-question">Parents, siblings or children with history of any sleep disorders</label>
-            <div class="form-check">
-                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes">
-                <label class="form-check-label" for="allergy-yes">
-                    Yes
-                </label>
-            </div>
-            <div class="form-check mt-2">
-                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
-                <label class="form-check-label" for="allergy-no">
-                    No
-                </label>
-            </div>
+            <select class="form-control mt-2" id="condition" name="condition">
+                <option value="">-- Select --</option>
+                <option value="diabetes">yes</option>
+                <option value="diabetes">No</option>
+
+            </select>
         </div>
 
         <div id="Medication_list" class="tabcontent mt-2">
@@ -149,18 +143,12 @@
 
             <div class="form-group mt-2">
                 <label for="allergy-question">Are you allergic to any medication?</label>
-                <div class="form-check">
-                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes" @onchange="@(()=>getValue1())">
-                    <label class="form-check-label" for="allergy-yes">
-                        Yes
-                    </label>
-                </div>
-                <div class="form-check mt-2">
-                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
-                    <label class="form-check-label" for="allergy-no">
-                        No
-                    </label>
-                </div>
+                <select class="form-control mt-2" id="condition" name="condition">
+                    <option value="">-- Select --</option>
+                    <option value="diabetes">yes</option>
+                    <option value="diabetes">No</option>
+
+                </select>
             </div>
 
 
