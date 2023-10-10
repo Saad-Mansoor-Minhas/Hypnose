@@ -1,0 +1,200 @@
+﻿@page "/pasthistories"
+@inject NavigationManager nm;
+
+<style>
+    .pasthistory-shadow {
+        border: 1px solid #BFBFBF;
+        background-color: white;
+        box-shadow: 10px 10px 5px #aaaaaa;
+        width: 51rem;
+        padding: 3rem;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div class="container mb-4">
+
+
+
+
+
+    <div id="Past_Medical_History" class="tabcontent pasthistory-shadow">
+        <h2>History Section </h2>
+
+
+        @* <h3>Medical Conditions Dropdown</h3>*@
+
+        <div class="form-group">
+            <label for="condition">Select a Medical Condition:</label>
+            <select class="form-control mt-2" id="condition" name="condition">
+                <option value="">-- Select --</option>
+                <option value="diabetes">Diabetes</option>
+                <option value="hypertension">Hypertension</option>
+                <option value="asthma">Asthma</option>
+                <option value="migraine">Migraine</option>
+                <option value="arthritis">Arthritis</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+
+
+
+        <div class="form-group mt-2">
+            <label for="allergy-question">Any operations done in the past ?</label>
+            <div class="form-check">
+                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes" @onchange="@(()=>getValue())">
+                <label class="form-check-label" for="allergy-yes">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check mt-2">
+                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
+                <label class="form-check-label" for="allergy-no">
+                    No
+                </label>
+            </div>
+        </div>
+
+
+        <div id="Past_Surgical_History" class="tabcontent mt-2">
+            @if (isChecked)
+            {
+                @* <h1>Medical Operations</h1>*@
+                <p>Please Enter the details of Operation here </p>
+                <textarea class="form-control mt-2" id="allergy-details" rows="3"></textarea>
+            }
+        </div>
+
+        <div id="Social_History" class="tabcontent mt-2">
+
+
+
+            <div class="form-group mt-2">
+                <label for="allergy-question">Do you Smoke ?</label>
+                <div class="form-check">
+                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes">
+                    <label class="form-check-label" for="allergy-yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check mt-2">
+                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
+                    <label class="form-check-label" for="allergy-no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form-group mt-2">
+                <label for="alcoholHistory">2. History of Alcohol Use</label>
+                <select class="form-select mt-2" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+
+
+                </select>
+            </div>
+            <div class="form-group mt-2">
+                <label for="drugHistory">3. History of Illicit or Illegal Drug Use</label>
+                <select class="form-select mt-2" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+
+
+                </select>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="form-group mt-2">
+            <label for="allergy-question">Parents, siblings or children with history of any sleep disorders</label>
+            <div class="form-check">
+                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes">
+                <label class="form-check-label" for="allergy-yes">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check mt-2">
+                <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
+                <label class="form-check-label" for="allergy-no">
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div id="Medication_list" class="tabcontent mt-2">
+
+            <form>
+                <div class="mb-3">
+                    <label for="medications" class="form-label">Medications:</label>
+                    <textarea class="form-control mt-2" id="medications" rows="5"></textarea>
+                </div>
+            </form>
+
+
+        </div>
+        <div id="Allergies" class="tabcontent mt-2">
+
+
+            <div class="form-group mt-2">
+                <label for="allergy-question">Are you allergic to any medication?</label>
+                <div class="form-check">
+                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-yes" @onchange="@(()=>getValue1())">
+                    <label class="form-check-label" for="allergy-yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check mt-2">
+                    <input class="form-check-input mt-2" type="radio" name="allergy" id="allergy-no" value="no">
+                    <label class="form-check-label" for="allergy-no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form-group mt-2">
+                @if (isChecked1)
+                {
+                    <label for="allergy-details">If yes, please list the name and type of allergic reaction:</label>
+                    <textarea class="form-control mt-2" id="allergy-details" rows="3"></textarea>
+                }
+            </div>
+
+
+            <button @onclick="(e=>onSubmit())" class="btn btn-danger btn-lg mt-3">Submit</button>
+
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    public bool isChecked = false;
+    public bool isChecked1 = false;
+
+    private void onSubmit()
+    {
+        nm.NavigateTo("/categories");
+    }
+    public void getValue()
+    {
+        isChecked = true;
+    }
+    public void getValue1()
+    {
+        isChecked1 = true;
+    }
+}

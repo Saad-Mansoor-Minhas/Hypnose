@@ -1,0 +1,127 @@
+﻿@page "/demographic"
+
+@inject NavigationManager nm
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-lg-2 mb-5">
+            <div style="margin-top:05%">
+                <div class="card border-primary">
+                    <div class="card-body shadow-sm p-3">
+                        <section>
+                            <h5 class="text-black-50 mb-4">
+                            </h5>
+                            <h3>Demographic</h3>
+                            <h4 class="mb-3 fw-200">Please Answer the Following Questions.</h4>
+                            <div class=" mb-4">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" aria-label="Floating label select example">
+                                        <option value="-1" selected>Select Gender</option>
+
+                                        <option value="50">Male</option>
+                                        <option value="50">Female</option>
+                                        <option value="60">Non Binary</option>
+                                        <option value="60">Genderqueer</option> 
+                                        <option value="60">Prefer Not to Say</option> 
+                                        <option value="60">Others</option>
+
+                                    </select>
+                                    <label for="floatingSelect" class="label">Select the gender .</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" aria-label="Floating label select example">
+                                        <option value="-1" selected>Select Race</option>
+
+                                        <option value="50">White/Caucasian</option>
+                                        <option value="50">Multiracial/Mixed race</option>
+                                        <option value="60">Black/African American</option>
+                                        <option value="60">American Indian</option>
+                                        <option value="60">Alaska Native</option>
+                                        <option value="60">Hispanic/Latinx</option>
+                                        <option value="60">Native American/Indigenous</option>
+                                        <option value="60">Asian/Pacific Islander</option>
+                                         <option value="60">Prefer not to say</option>
+                                         <option value="60">Other</option>
+
+                                    </select>
+                                    <label for="floatingSelect" class="label">Select Your Race</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" aria-label="Floating label select example">
+                                        <option value="-1" selected>Select Ethnicity</option>
+                                        <option value="50">American People</option>
+                                        <option value="50">European</option>
+                                        <option value="60">African</option>
+                                        <option value="60">Asian</option>
+                                        <option value="60">Hispanic/Latinx</option>
+                                        <option value="60">Others</option>
+                                        <option value="60">Prefer Not to Say</option>
+
+                                    </select>
+                                    <label for="floatingSelect" class="label">Select the Ethnic Group.</label>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-3 mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Enter Height in inches</label>
+                                        <input type="text" class="form-control" @bind="@height" id="exampleFormControlInput1" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Enter Weight in pound</label>
+                                        <input type="text" class="form-control" @bind="@weight" id="exampleFormControlInput1" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <br />
+                                        <button class="btn btn-danger mt-2" @onclick="calculatebmi">Calculate</button>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">BMI</label>
+                                        <input type="text" readonly class="form-control" @bind="@bmi" id="exampleFormControlInput1">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Enter the Neck Circumference.</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" required>
+                                </div>
+
+
+                            </div>
+
+                            <div>
+                                <button class="btn btn-danger me-2 btn-lg" style="float:right;" @onclick="submit">Next</button>
+                                @* <button @onclick="()=>UpdatePatentResponses(quiz[QuestionNo].Qno,quiz[QuestionNo].Question,SelectedChoice)" class="btn btn-primary btn-next" disabled="@NextIsDisabled">Next</button>*@
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    public double height { get; set; }
+    public double weight { get; set; }
+
+    public double bmi { get; set; }
+    public double inches { get; set; }
+
+
+    public void calculatebmi()
+    {
+        inches = height * 703;
+        if (weight > 0 && inches > 0.0 && inches <= 2.1336)
+        {
+
+            bmi = weight / (inches * inches);
+        }
+    }
+    void submit()
+    {
+        nm.NavigateTo("/pasthistories");
+    }
+}
